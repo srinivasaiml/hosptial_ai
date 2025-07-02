@@ -1,0 +1,49 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "functions": {
+    "api/auth/login.js": {
+      "maxDuration": 10
+    },
+    "api/auth/register.js": {
+      "maxDuration": 10
+    },
+    "api/appointments/book.js": {
+      "maxDuration": 10
+    },
+    "api/appointments/slots.js": {
+      "maxDuration": 10
+    },
+    "api/appointments/my.js": {
+      "maxDuration": 10
+    },
+    "api/appointments/cancel.js": {
+      "maxDuration": 10
+    },
+    "api/appointments/confirm-payment.js": {
+      "maxDuration": 10
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "MONGODB_URI": "mongodb+srv://psrinivas9381:Srinvas*9192@cluster0.7h1wve9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    "JWT_SECRET": "hospital-ai-chat-jwt-secret-key-2024"
+  }
+}
