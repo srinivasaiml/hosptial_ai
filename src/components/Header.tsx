@@ -60,6 +60,13 @@ const Header: React.FC = () => {
             </div>
             <button
               onClick={handleAdminLogin}
+              className="flex items-center space-x-1 px-3 py-1 bg-orange-500 hover:bg-orange-600 rounded-full transition-colors text-xs font-medium"
+            >
+              <Shield size={12} />
+              <span>Admin Login</span>
+            </button>
+            <button
+              onClick={handleAdminLogin}
               className="flex items-center space-x-1 px-3 py-1 bg-white/20 hover:bg-white/30 rounded-full transition-colors text-xs font-medium"
             >
               <Shield size={12} />
@@ -139,6 +146,20 @@ const Header: React.FC = () => {
                 <span>Admin</span>
               </motion.button>
               
+              {/* Admin Login Button - Always Visible */}
+              <motion.button
+                onClick={handleAdminLogin}
+                className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-full hover:from-purple-600 hover:to-indigo-600 transition-all duration-300 transform hover:scale-105 shadow-lg font-medium"
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Shield size={18} />
+                <span>Admin Login</span>
+              </motion.button>
+
               {isAuthenticated ? (
                 <motion.div className="flex items-center space-x-4">
                   <span className={`text-sm font-medium ${isScrolled ? 'text-gray-600' : 'text-white/90'}`}>
@@ -152,16 +173,17 @@ const Header: React.FC = () => {
                   </button>
                 </motion.div>
               ) : (
+                {/* User Login Button */}
                 <motion.button
                   onClick={() => document.dispatchEvent(new CustomEvent('openAuthModal'))}
-                  className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-full hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105 shadow-lg font-medium"
+                  className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-full hover:from-green-600 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105 shadow-lg font-medium"
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.6 }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Get Started
+                  Patient Login
                 </motion.button>
               )}
             </div>
@@ -213,15 +235,25 @@ const Header: React.FC = () => {
                   <Shield size={18} />
                   <span>Admin Login</span>
                 </button>
+                <button
+                  onClick={() => {
+                    handleAdminLogin();
+                    setIsMenuOpen(false);
+                  }}
+                  className="flex items-center justify-center space-x-2 px-3 py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-lg font-medium"
+                >
+                  <Shield size={18} />
+                  <span>Admin Login</span>
+                </button>
                 {!isAuthenticated && (
                   <button
                     onClick={() => {
                       document.dispatchEvent(new CustomEvent('openAuthModal'));
                       setIsMenuOpen(false);
                     }}
-                    className="px-3 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg font-medium"
+                    className="px-3 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg font-medium"
                   >
-                    Get Started
+                    Patient Login
                   </button>
                 )}
               </div>
